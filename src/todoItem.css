@@ -1,0 +1,28 @@
+.todo-item {
+  display: flex;
+  padding: 5px;
+  font-family: sans-serif;
+}
+
+.todo-item > div {
+  width: 10px;
+}
+
+.todo-item > span {
+  padding-left: 10px;
+}
+
+.created > div {
+  background: lightblue;
+}
+
+.in-progress > div {
+  background: orange;
+}
+
+.done > div {
+  background: mediumseagreen;
+}
+.done {
+  text-decoration: line-through;
+}
