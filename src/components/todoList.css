@@ -1,3 +1,7 @@
+body {
+  margin: 2rem;
+}
+
 .header {
   font-family: sans-serif;
   font-size: 20px;
@@ -7,29 +11,21 @@
 
 .todo-item {
   display: flex;
-  padding: 5px;
+  padding-left: 10px;
+  margin: 10px 0;
+  border-left: 15px solid;
   font-family: sans-serif;
 }
 
-.todo-item > div {
-  width: 10px;
+.todo {
+  border-color: lightblue;
 }
 
-.todo-item > span {
-  padding-left: 10px;
+.in-progress {
+  border-color: orange;
 }
 
-.todo > div {
-  background: lightblue;
-}
-
-.in-progress > div {
-  background: orange;
-}
-
-.done > div {
-  background: mediumseagreen;
-}
 .done {
+  border-color: mediumseagreen;
   text-decoration: line-through;
 }

@@ -3,10 +3,12 @@ import React from 'react';
 const TodoItem = function (props) {
   const { todo, toggleTodo } = props;
   const { content, id, state } = todo;
+  const onClick = () => toggleTodo(id);
+  const className = `${state} todo-item`;
+
   return (
-    <div onClick={() => toggleTodo(id)} className={`${state} todo-item`}>
-      <div></div>
-      <span>{content}</span>
+    <div onClick={onClick} className={className}>
+      {content}
     </div>
   );
 };
