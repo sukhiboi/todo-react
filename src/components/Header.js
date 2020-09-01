@@ -20,11 +20,11 @@ class Header extends React.Component {
 
   render() {
     const defaultHeader = (
-      <div onClick={this.toggleEditability}>{this.props.value}</div>
+      <div onClick={this.toggleEditability}>{this.props.title}</div>
     );
 
     const editableHeader = (
-      <InputBar value={this.props.value} onEnter={this.saveNewTitle} />
+      <InputBar value={this.props.title} onEnter={this.saveNewTitle} />
     );
 
     return (
