@@ -24,7 +24,11 @@ class Header extends React.Component {
     );
 
     const editableHeader = (
-      <InputBar value={this.props.title} onEnter={this.saveNewTitle} />
+      <InputBar
+        placeholder='Add new Title'
+        value={this.props.title}
+        onEnter={this.saveNewTitle}
+      />
     );
 
     return (
