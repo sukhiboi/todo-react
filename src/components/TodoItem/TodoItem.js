@@ -2,13 +2,11 @@ import React from 'react';
 
 const TodoItem = function (props) {
   const { todo, toggleTodo } = props;
-  const { content, id, state } = todo;
-  const onClick = () => toggleTodo(id);
-  const className = `${state} todo-item`;
+  const { content, id, status } = todo;
 
   return (
-    <div onClick={onClick} className={className}>
-      {content}
+    <div className={`${status} todo-item`}>
+      <span onClick={() => toggleTodo(id)}>{content}</span>
     </div>
   );
 };

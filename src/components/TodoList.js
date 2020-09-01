@@ -26,7 +26,7 @@ class TodoList extends React.Component {
 
   addNewTodo(content) {
     const id = this.nextTodoId();
-    const todo = { content, id, state: getDefaultState() };
+    const todo = { content, id, status: getDefaultState() };
     this.setState(state => ({ todos: [...state.todos, todo] }));
   }
 
@@ -34,7 +34,7 @@ class TodoList extends React.Component {
     this.setState(state => {
       const index = state.todos.findIndex(todo => todo.id === id);
       const todo = state.todos[index];
-      const updatedTodo = { ...todo, state: getNextTodoState(todo.state) };
+      const updatedTodo = { ...todo, status: getNextTodoState(todo.status) };
       const todos = [...state.todos];
       todos[index] = updatedTodo;
       return { todos };
