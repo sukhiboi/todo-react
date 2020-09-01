@@ -1,5 +1,4 @@
 import React from 'react';
-import './todoItem.css';
 
 const TodoItem = function (props) {
   const { todo, onClick } = props;

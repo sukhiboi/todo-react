@@ -1,5 +1,6 @@
 import React from 'react';
 import { getNextTodoState, getDefaultState } from './TodoItem/todoItemStates';
+import './todoList.css';
 import InputBar from './InputBar';
 import TodoItem from './TodoItem/TodoItem';
 import Header from './Header';
