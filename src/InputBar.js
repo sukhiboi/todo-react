@@ -3,7 +3,7 @@ import React from 'react';
 class InputBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: props.value };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
@@ -13,7 +13,7 @@ class InputBar extends React.Component {
     const isEnterPressed = e.key === 'Enter';
     if (isEnterPressed && value) {
       this.props.onEnter(value);
-      this.setState(() => ({ value: '' }));
+      this.setState(() => ({ value: this.props.value }));
     }
   }
 
@@ -37,5 +37,9 @@ class InputBar extends React.Component {
     );
   }
 }
+
+InputBar.defaultProps = {
+  value: '',
+};
 
 export default InputBar;

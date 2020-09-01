@@ -1,3 +1,10 @@
+.header {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
 .todo-item {
   display: flex;
   padding: 5px;
@@ -12,7 +19,7 @@
   padding-left: 10px;
 }
 
-.created > div {
+.todo > div {
   background: lightblue;
 }
 
