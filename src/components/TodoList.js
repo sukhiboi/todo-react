@@ -1,8 +1,8 @@
 import React from 'react';
-import { getNextTodoState, getDefaultState } from './components/todoItemStates';
-import InputBar from './components/InputBar';
-import TodoItem from './components/TodoItem';
-import Header from './components/Header';
+import { getNextTodoState, getDefaultState } from './TodoItem/todoItemStates';
+import InputBar from './InputBar';
+import TodoItem from './TodoItem/TodoItem';
+import Header from './Header';
 
 class TodoList extends React.Component {
   constructor(props) {
