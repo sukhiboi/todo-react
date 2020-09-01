@@ -39,7 +39,7 @@ class TodoList extends React.Component {
 
   render() {
     const todos = this.state.todos.map(todo => (
-      <TodoItem todo={todo} onClick={this.toggleTodo} key={todo.id} />
+      <TodoItem todo={todo} toggleTodo={this.toggleTodo} key={todo.id} />
     ));
 
     return (
