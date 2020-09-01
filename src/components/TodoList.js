@@ -46,7 +46,7 @@ class TodoList extends React.Component {
       <div>
         <Header title={this.state.title} updateTitle={this.updateTitle} />
         {todos}
-        <InputBar onEnter={this.addNewTodo} />
+        <InputBar placeholder='Add new Todo' onEnter={this.addNewTodo} />
       </div>
     );
   }

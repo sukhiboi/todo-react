@@ -29,6 +29,7 @@ class InputBar extends React.Component {
       <div>
         <input
           style={{ fontFamily: 'sans-serif', fontSize: 16 }}
+          placeholder={this.props.placeholder}
           value={this.state.value}
           onKeyPress={this.handleKeyPress}
           onChange={this.handleChange}
@@ -40,6 +41,7 @@ class InputBar extends React.Component {
 
 InputBar.defaultProps = {
   value: '',
+  placeholder: '',
 };
 
 export default InputBar;
