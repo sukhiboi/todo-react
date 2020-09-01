@@ -5,9 +5,15 @@ import InputBar from './InputBar';
 import TodoItem from './TodoItem/TodoItem';
 import Header from './Header';
 
+const idGenerator = function () {
+  let id = 0;
+  return () => id++;
+};
+
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
+    this.nextTodoId = idGenerator();
     this.state = { todos: [], title: 'Todo' };
     this.addNewTodo = this.addNewTodo.bind(this);
     this.toggleTodo = this.toggleTodo.bind(this);
@@ -19,11 +25,9 @@ class TodoList extends React.Component {
   }
 
   addNewTodo(content) {
-    this.setState(state => {
-      const id = state.todos.length + 1;
-      const todo = { content, id, state: getDefaultState() };
-      return { todos: [...state.todos, todo] };
-    });
+    const id = this.nextTodoId();
+    const todo = { content, id, state: getDefaultState() };
+    this.setState(state => ({ todos: [...state.todos, todo] }));
   }
 
   toggleTodo(id) {
