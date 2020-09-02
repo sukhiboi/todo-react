@@ -18,6 +18,7 @@ class TodoList extends React.Component {
     this.addNewTodo = this.addNewTodo.bind(this);
     this.toggleTodo = this.toggleTodo.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   updateTitle(newTitle) {
@@ -28,6 +29,15 @@ class TodoList extends React.Component {
     const id = this.nextTodoId();
     const todo = { content, id, status: getDefaultState() };
     this.setState(state => ({ todos: [...state.todos, todo] }));
+  }
+
+  deleteTodo(id) {
+    this.setState(state => {
+      const todoIndex = state.todos.findIndex(todo => todo.id === id);
+      const todos = [...state.todos];
+      todos.splice(todoIndex, 1);
+      return { todos };
+    });
   }
 
   toggleTodo(id) {
@@ -43,7 +53,12 @@ class TodoList extends React.Component {
 
   render() {
     const todos = this.state.todos.map(todo => (
-      <TodoItem todo={todo} toggleTodo={this.toggleTodo} key={todo.id} />
+      <TodoItem
+        todo={todo}
+        toggleTodo={this.toggleTodo}
+        deleteTodo={this.deleteTodo}
+        key={todo.id}
+      />
     ));
 
     return (
