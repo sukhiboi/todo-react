@@ -1,4 +1,5 @@
 import React from 'react';
+import CrossBtn from '../CrossBtn';
 
 const TodoItem = function (props) {
   const { todo, toggleTodo, deleteTodo } = props;
@@ -7,9 +8,7 @@ const TodoItem = function (props) {
   return (
     <div className={`${status} todo-item`}>
       <span onClick={() => toggleTodo(id)}>{content}</span>
-      <span className='cross' onClick={() => deleteTodo(id)}>
-        X
-      </span>
+      <CrossBtn className="cross" onClick={() => deleteTodo(id)} />
     </div>
   );
 };

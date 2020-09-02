@@ -7,7 +7,6 @@ body {
   font-size: 20px;
   font-weight: 700;
 }
-
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -25,8 +24,12 @@ body {
 
 .cross {
   font-size: 14px;
+  font-weight: 700;
   color: grey;
   visibility: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .todo {
