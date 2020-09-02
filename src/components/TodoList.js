@@ -5,16 +5,10 @@ import InputBar from './InputBar';
 import TodoItem from './TodoItem/TodoItem';
 import Header from './Header';
 
-const idGenerator = function () {
-  let id = 0;
-  return () => id++;
-};
-
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
-    this.nextTodoId = idGenerator();
-    this.state = { todos: [], title: 'Todo' };
+    this.state = { todos: [], title: 'Todo', lastId: 0 };
     this.addNewTodo = this.addNewTodo.bind(this);
     this.toggleTodo = this.toggleTodo.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
@@ -26,9 +20,10 @@ class TodoList extends React.Component {
   }
 
   addNewTodo(content) {
-    const id = this.nextTodoId();
-    const todo = { content, id, status: getDefaultState() };
-    this.setState(state => ({ todos: [...state.todos, todo] }));
+    this.setState(state => {
+      const todo = { content, id: state.lastId, status: getDefaultState() };
+      return { todos: [...state.todos, todo], lastId: state.lastId++ };
+    });
   }
 
   deleteTodo(id) {
