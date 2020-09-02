@@ -33,9 +33,7 @@ class TodoList extends React.Component {
 
   deleteTodo(id) {
     this.setState(state => {
-      const todoIndex = state.todos.findIndex(todo => todo.id === id);
-      const todos = [...state.todos];
-      todos.splice(todoIndex, 1);
+      const todos = state.todos.filter(todo => todo.id !== id);
       return { todos };
     });
   }
