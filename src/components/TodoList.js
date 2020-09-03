@@ -4,6 +4,7 @@ import './todoList.css';
 import InputBar from './InputBar';
 import TodoItem from './TodoItem/TodoItem';
 import Header from './Header';
+import CrossBtn from './CrossBtn';
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class TodoList extends React.Component {
     this.toggleTodo = this.toggleTodo.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
+    this.deleteAllTodos = this.deleteAllTodos.bind(this);
   }
 
   updateTitle(newTitle) {
@@ -31,6 +33,10 @@ class TodoList extends React.Component {
       const todos = state.todos.filter(todo => todo.id !== id);
       return { todos };
     });
+  }
+
+  deleteAllTodos() {
+    this.setState(() => ({ todos: [], lastId: 0 }));
   }
 
   toggleTodo(id) {
@@ -56,7 +62,13 @@ class TodoList extends React.Component {
 
     return (
       <div style={{ width: 'fit-content' }}>
-        <Header title={this.state.title} updateTitle={this.updateTitle} />
+        <div className='header'>
+          <Header title={this.state.title} updateTitle={this.updateTitle} />
+          <CrossBtn
+            className='reset-list cross'
+            onClick={this.deleteAllTodos}
+          />
+        </div>
         <hr />
         {todos}
         <InputBar placeholder='Add new Todo' onEnter={this.addNewTodo} />
