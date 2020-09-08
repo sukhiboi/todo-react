@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CrossBtn = ({ className, onClick }) => (
-  <div className={className} onClick={onClick}>
+const CrossBtn = ({ onClick }) => (
+  <div className='cross' onClick={onClick}>
     X
   </div>
 );

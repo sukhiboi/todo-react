@@ -1,4 +1,4 @@
-const sendPostRequest = function (route, data = {}) {
+const post = function (route = '', data = {}) {
   return fetch(route, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -8,46 +8,46 @@ const sendPostRequest = function (route, data = {}) {
   }).then(res => res.json());
 };
 
-const getRequest = route => fetch(route).then(res => res.json());
+const get = route => fetch(route).then(res => res.json());
 
 //TodoListAPI
 
 const getTodoIds = updater => {
-  getRequest('/api/todoIds').then(ids => updater(ids));
+  get('/api/todoIds').then(ids => updater(ids));
 };
 
 const getHeading = updater => {
-  getRequest('/api/heading').then(({ heading }) => updater(heading));
+  get('/api/heading').then(({ heading }) => updater(heading));
 };
 
 const addTodo = (content, updater) => {
-  sendPostRequest('/api/addTodo', { content }).then(({ id }) => {
+  post('/api/addTodo', { content }).then(({ id }) => {
     updater(ids => [...ids, id]);
   });
 };
 
 const updateHeading = (heading, updater) => {
-  sendPostRequest('/api/updateHeading', { heading }).then(({ heading }) =>
+  post('/api/updateHeading', { heading }).then(({ heading }) =>
     updater(heading)
   );
 };
 
 const deleteTodo = (id, updater) => {
-  sendPostRequest(`/api/deleteTodo/${id}`).then(() => getTodoIds(updater));
+  post(`/api/deleteTodo/${id}`).then(() => getTodoIds(updater));
 };
 
 const resetList = updater => {
-  fetch('/api/resetList').then(() => updater([]));
+  get('/api/resetList').then(res => updater(res));
 };
 
 //TodoItemAPI
 
 const getTodo = (id, updater) => {
-  getRequest(`/api/todo/${id}`).then(updater);
+  get(`/api/todo/${id}`).then(updater);
 };
 
 const toggleTodoStatus = (id, updater) => {
-  sendPostRequest(`/api/toggleTodo/${id}`).then(({ status }) => {
+  post(`/api/toggleTodo/${id}`).then(({ status }) => {
     updater(todo => ({ ...todo, status }));
   });
 };

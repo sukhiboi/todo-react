@@ -18,10 +18,7 @@ app.get('/api/todo/:id', (req, res) => {
   return res.json(todo.getTodo(id));
 });
 app.get('/api/heading', (req, res) => res.json({ heading: todo.getHeading() }));
-app.get('/api/resetList', (req, res) => {
-  todo.resetList();
-  return res.end();
-});
+app.get('/api/resetList', (req, res) => res.json(todo.resetList()));
 
 app.post('/api/addTodo', (req, res) => {
   const id = todo.addTodo(req.body.content);

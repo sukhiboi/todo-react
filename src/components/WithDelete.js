@@ -5,7 +5,7 @@ export default Component => {
   return props => (
     <div className='cross-hover' style={{ display: 'flex', justifyContent: 'space-between' }}>
       <Component {...props} />
-      <CrossButton className='cross' onClick={props.deleteAction} />
+      <CrossButton onClick={props.deleteAction} />
     </div>
   );
 };

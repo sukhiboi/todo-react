@@ -59,6 +59,7 @@ class TodoList {
   resetList() {
     this.list = [];
     this.lastId = 0;
+    return this.list;
   }
 }
 
