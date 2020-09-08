@@ -34,10 +34,6 @@ class TodoList {
     return status;
   }
 
-  getHeading() {
-    return this.heading;
-  }
-
   updateHeading(heading) {
     this.heading = heading;
     return this.heading;
@@ -48,8 +44,8 @@ class TodoList {
     return id;
   }
 
-  getTodosIds() {
-    return this.list.map(todo => todo.id);
+  getTodosList() {
+    return { todoIds: this.list.map(todo => todo.id), heading: this.heading };
   }
 
   getTodo(id) {
@@ -59,7 +55,7 @@ class TodoList {
   resetList() {
     this.list = [];
     this.lastId = 0;
-    return this.list;
+    return { todoIds: [], heading: this.heading };
   }
 }
 

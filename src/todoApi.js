@@ -12,28 +12,24 @@ const get = route => fetch(route).then(res => res.json());
 
 //TodoListAPI
 
-const getTodoIds = updater => {
-  get('/api/todoIds').then(ids => updater(ids));
-};
-
-const getHeading = updater => {
-  get('/api/heading').then(({ heading }) => updater(heading));
+const getTodoList = updater => {
+  get('/api/todoList').then(updater);
 };
 
 const addTodo = (content, updater) => {
   post('/api/addTodo', { content }).then(({ id }) => {
-    updater(ids => [...ids, id]);
+    updater(todoList => ({ ...todoList, todoIds: [...todoList.todoIds, id] }));
   });
 };
 
 const updateHeading = (heading, updater) => {
   post('/api/updateHeading', { heading }).then(({ heading }) =>
-    updater(heading)
+    updater(todoList => ({ ...todoList, heading }))
   );
 };
 
 const deleteTodo = (id, updater) => {
-  post(`/api/deleteTodo/${id}`).then(() => getTodoIds(updater));
+  post(`/api/deleteTodo/${id}`).then(() => getTodoList(updater));
 };
 
 const resetList = updater => {
@@ -53,8 +49,7 @@ const toggleTodoStatus = (id, updater) => {
 };
 
 export default {
-  getTodoIds,
-  getHeading,
+  getTodoList,
   addTodo,
   updateHeading,
   deleteTodo,

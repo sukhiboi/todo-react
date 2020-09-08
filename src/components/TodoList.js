@@ -10,17 +10,18 @@ const TodoItemWithDelete = WithDelete(TodoItem);
 const HeaderWithDelete = WithDelete(Header);
 
 const TodoList = props => {
-  const [todoIds, setTodoIds] = useState([]);
-  const [heading, setHeading] = useState('');
+  const [{ todoIds, heading }, setTodoList] = useState({
+    todoIds: [],
+    heading: '',
+  });
 
   useEffect(() => {
-    api.getTodoIds(setTodoIds);
-    api.getHeading(setHeading);
+    api.getTodoList(setTodoList);
   }, []);
 
   const todoItems = todoIds.map(id => (
     <TodoItemWithDelete
-      deleteAction={() => api.deleteTodo(id, setTodoIds)}
+      deleteAction={() => api.deleteTodo(id, setTodoList)}
       id={id}
       key={id}
     />
@@ -30,14 +31,14 @@ const TodoList = props => {
     <div style={{ width: 'fit-content' }}>
       <HeaderWithDelete
         heading={heading}
-        updateHeading={heading => api.updateHeading(heading, setHeading)}
-        deleteAction={() => api.resetList(setTodoIds)}
+        updateHeading={heading => api.updateHeading(heading, setTodoList)}
+        deleteAction={() => api.resetList(setTodoList)}
       />
       <hr />
       {todoItems}
       <InputBar
         placeholder='Add new Todo'
-        onEnter={content => api.addTodo(content, setTodoIds)}
+        onEnter={content => api.addTodo(content, setTodoList)}
       />
     </div>
   );
