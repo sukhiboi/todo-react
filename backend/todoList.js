@@ -1,16 +1,4 @@
-const TODO = 'todo';
-const INPROGRESS = 'in-progress';
-const DONE = 'done';
-
-const states = {
-  [TODO]: INPROGRESS,
-  [INPROGRESS]: DONE,
-  [DONE]: TODO,
-};
-
-const getNextStatus = currentState => states[currentState];
-
-const getDefaultStatus = () => TODO;
+const { getDefaultStatus, getNextStatus } = require('./todoItemStates');
 
 class TodoList {
   constructor(heading) {
