@@ -1,43 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class InputBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: props.value };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
+const InputBar = props => {
+  const [input, setInput] = useState(props.value);
 
-  handleKeyPress(e) {
-    const { value } = this.state;
-    const isEnterPressed = e.key === 'Enter';
-    if (isEnterPressed && value) {
-      this.props.onEnter(value);
-      this.setState(() => ({ value: this.props.value }));
+  const handleKeyPress = e => {
+    if (e.key === 'Enter' && input) {
+      props.onEnter(input);
+      setInput('');
     }
-  }
+  };
 
-  handleChange(e) {
-    const value = e.target.value;
-    this.setState(() => {
-      return { value };
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <input
-          style={{ fontFamily: 'sans-serif', fontSize: 16 }}
-          placeholder={this.props.placeholder}
-          value={this.state.value}
-          onKeyPress={this.handleKeyPress}
-          onChange={this.handleChange}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <input
+        style={{ fontFamily: 'sans-serif', fontSize: 16 }}
+        placeholder={props.placeholder}
+        value={input}
+        onKeyPress={handleKeyPress}
+        onChange={e => setInput(e.target.value)}
+      />
+    </div>
+  );
+};
 
 InputBar.defaultProps = {
   value: '',

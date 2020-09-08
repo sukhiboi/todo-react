@@ -1,42 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputBar from './InputBar';
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isEditable: false };
-    this.saveNewTitle = this.saveNewTitle.bind(this);
-    this.toggleEditability = this.toggleEditability.bind(this);
-  }
+const Header = props => {
+  const [isEditable, setIsEditable] = useState(false);
 
-  toggleEditability() {
-    this.setState(state => ({ isEditable: !state.isEditable }));
-  }
+  const saveNewTitle = heading => {
+    props.updateHeading(heading);
+    setIsEditable(value => !value);
+  };
 
-  saveNewTitle(newTitle) {
-    this.props.updateTitle(newTitle);
-    this.toggleEditability();
-  }
+  const defaultHeader = (
+    <div onClick={() => setIsEditable(value => !value)}>{props.heading}</div>
+  );
 
-  render() {
-    const defaultHeader = (
-      <div onClick={this.toggleEditability}>{this.props.title}</div>
-    );
+  const editableHeader = (
+    <InputBar
+      placeholder='Add new Title'
+      value={props.heading}
+      onEnter={saveNewTitle}
+    />
+  );
 
-    const editableHeader = (
-      <InputBar
-        placeholder='Add new Title'
-        value={this.props.title}
-        onEnter={this.saveNewTitle}
-      />
-    );
-
-    return (
-      <div className='header'>
-        {this.state.isEditable ? editableHeader : defaultHeader}
-      </div>
-    );
-  }
-}
+  return (
+    <div className='header'>{isEditable ? editableHeader : defaultHeader}</div>
+  );
+};
 
 export default Header;

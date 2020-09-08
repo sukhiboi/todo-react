@@ -28,8 +28,10 @@ class TodoList {
     const list = [...this.list];
     const todoIndex = list.findIndex(todo => todo.id === id);
     const todo = list[todoIndex];
-    list[todoIndex] = { ...todo, status: getNextStatus(todo.status) };
+    const status = getNextStatus(todo.status);
+    list[todoIndex] = { ...todo, status };
     this.list = list;
+    return status;
   }
 
   getHeading() {
@@ -43,6 +45,7 @@ class TodoList {
 
   deleteTodo(id) {
     this.list = this.list.filter(todo => todo.id !== id);
+    return id;
   }
 
   getTodosIds() {
@@ -51,6 +54,11 @@ class TodoList {
 
   getTodo(id) {
     return { ...this.list.find(todo => todo.id === id) };
+  }
+
+  resetList() {
+    this.list = [];
+    this.lastId = 0;
   }
 }
 

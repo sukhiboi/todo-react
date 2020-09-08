@@ -1,80 +1,46 @@
-import React from 'react';
-import { getNextTodoState, getDefaultState } from './TodoItem/todoItemStates';
+import React, { useState, useEffect } from 'react';
+import api from '../todoApi';
 import './todoList.css';
 import InputBar from './InputBar';
-import TodoItem from './TodoItem/TodoItem';
+import TodoItem from './TodoItem';
 import Header from './Header';
-import CrossBtn from './CrossBtn';
+import WithDelete from './WithDelete';
 
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { todos: [], title: 'Todo', lastId: 0 };
-    this.addNewTodo = this.addNewTodo.bind(this);
-    this.toggleTodo = this.toggleTodo.bind(this);
-    this.updateTitle = this.updateTitle.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this);
-    this.deleteAllTodos = this.deleteAllTodos.bind(this);
-  }
+const TodoItemWithDelete = WithDelete(TodoItem);
+const HeaderWithDelete = WithDelete(Header);
 
-  updateTitle(newTitle) {
-    this.setState(() => ({ title: newTitle }));
-  }
+const TodoList = props => {
+  const [todoIds, setTodoIds] = useState([]);
+  const [heading, setHeading] = useState('');
 
-  addNewTodo(content) {
-    this.setState(state => {
-      const todo = { content, id: state.lastId, status: getDefaultState() };
-      return { todos: [...state.todos, todo], lastId: state.lastId++ };
-    });
-  }
+  useEffect(() => {
+    api.getTodoIds(setTodoIds);
+    api.getHeading(setHeading);
+  }, []);
 
-  deleteTodo(id) {
-    this.setState(state => {
-      const todos = state.todos.filter(todo => todo.id !== id);
-      return { todos };
-    });
-  }
+  const todoItems = todoIds.map(id => (
+    <TodoItemWithDelete
+      deleteAction={() => api.deleteTodo(id, setTodoIds)}
+      id={id}
+      key={id}
+    />
+  ));
 
-  deleteAllTodos() {
-    this.setState(() => ({ todos: [], lastId: 0 }));
-  }
-
-  toggleTodo(id) {
-    this.setState(state => {
-      const index = state.todos.findIndex(todo => todo.id === id);
-      const todo = state.todos[index];
-      const updatedTodo = { ...todo, status: getNextTodoState(todo.status) };
-      const todos = [...state.todos];
-      todos[index] = updatedTodo;
-      return { todos };
-    });
-  }
-
-  render() {
-    const todos = this.state.todos.map(todo => (
-      <TodoItem
-        todo={todo}
-        toggleTodo={this.toggleTodo}
-        deleteTodo={this.deleteTodo}
-        key={todo.id}
+  return (
+    <div style={{ width: 'fit-content' }}>
+      <HeaderWithDelete
+        heading={heading}
+        updateHeading={heading => api.updateHeading(heading, setHeading)}
+        deleteAction={() => api.resetList(setTodoIds)}
       />
-    ));
-
-    return (
-      <div style={{ width: 'fit-content' }}>
-        <div className='header'>
-          <Header title={this.state.title} updateTitle={this.updateTitle} />
-          <CrossBtn
-            className='reset-list cross'
-            onClick={this.deleteAllTodos}
-          />
-        </div>
-        <hr />
-        {todos}
-        <InputBar placeholder='Add new Todo' onEnter={this.addNewTodo} />
-      </div>
-    );
-  }
-}
+      <hr />
+      {todoItems}
+      <InputBar
+        placeholder='Add new Todo'
+        onEnter={content => api.addTodo(content, setTodoIds)}
+      />
+    </div>
+  );
+};
 
 export default TodoList;

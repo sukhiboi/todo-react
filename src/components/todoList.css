@@ -10,11 +10,6 @@ body {
   justify-content: space-between;
 }
 
-.header:hover .reset-list {
-  visibility: visible;
-  cursor: pointer;
-}
-
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -25,7 +20,7 @@ body {
   user-select: none;
 }
 
-.todo-item:hover .cross {
+.cross-hover:hover .cross {
   cursor: pointer;
   visibility: visible;
 }
@@ -34,10 +29,15 @@ body {
   font-size: 14px;
   font-weight: 700;
   color: grey;
-  visibility: hidden;
+  font-family: sans-serif;
+  visibility: hidden; 
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.cross:hover {
+  cursor: pointer;
 }
 
 .todo {
