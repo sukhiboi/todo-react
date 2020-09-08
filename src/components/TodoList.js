@@ -28,7 +28,7 @@ const TodoList = props => {
   ));
 
   return (
-    <div style={{ width: 'fit-content' }}>
+    <div className='todo-list'>
       <HeaderWithDelete
         heading={heading}
         updateHeading={heading => api.updateHeading(heading, setTodoList)}
@@ -36,6 +36,7 @@ const TodoList = props => {
       />
       <hr />
       {todoItems}
+      <hr />
       <InputBar
         placeholder='Add new Todo'
         onEnter={content => api.addTodo(content, setTodoList)}

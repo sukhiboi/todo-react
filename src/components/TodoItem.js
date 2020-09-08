@@ -10,10 +10,11 @@ const TodoItem = function (props) {
 
   if (todo === null) return <p>Loading...</p>;
   return (
-    <div className={`${todo.status} todo-item`}>
-      <span onClick={() => api.toggleTodoStatus(props.id, setTodo)}>
-        {todo.content}
-      </span>
+    <div
+      className={`${todo.status} todo-item`}
+      onClick={() => api.toggleTodoStatus(props.id, setTodo)}
+    >
+      <span>{todo.content}</span>
     </div>
   );
 };

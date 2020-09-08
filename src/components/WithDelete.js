@@ -3,7 +3,7 @@ import CrossButton from './CrossBtn';
 
 export default Component => {
   return props => (
-    <div className='cross-hover' style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div className='cross-hover'>
       <Component {...props} />
       <CrossButton onClick={props.deleteAction} />
     </div>

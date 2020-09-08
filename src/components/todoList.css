@@ -2,6 +2,12 @@ body {
   margin: 2rem;
 }
 
+input {
+  font-family: sans-serif;
+  font-size: 1rem;
+  width: -webkit-fill-available;
+}
+
 .header {
   font-family: sans-serif;
   font-size: 20px;
@@ -10,14 +16,37 @@ body {
   justify-content: space-between;
 }
 
+.todo-list {
+  width: 12rem;
+}
+
 .todo-item {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
-  margin: 10px 0;
-  border-left: 15px solid;
+  padding: 4px 10px;
+  margin: 4px 0;
+  border-left: 10px solid;
   font-family: sans-serif;
   user-select: none;
+  width: -webkit-fill-available;
+}
+
+.todo-item > span {
+  word-break: break-word;
+}
+
+.todo-item:hover {
+  cursor: pointer;
+}
+
+.cross-hover {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.cross-hover:hover {
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .cross-hover:hover .cross {
@@ -28,9 +57,9 @@ body {
 .cross {
   font-size: 14px;
   font-weight: 700;
-  color: grey;
+  color: rgba(0, 0, 0, 0.4);
   font-family: sans-serif;
-  visibility: hidden; 
+  visibility: hidden;
   display: flex;
   justify-content: center;
   flex-direction: column;

@@ -13,7 +13,6 @@ const InputBar = props => {
   return (
     <div>
       <input
-        style={{ fontFamily: 'sans-serif', fontSize: 16 }}
         placeholder={props.placeholder}
         value={input}
         onKeyPress={handleKeyPress}

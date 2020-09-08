@@ -2,9 +2,7 @@ const post = function (route = '', data = {}) {
   return fetch(route, {
     method: 'POST',
     body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
   }).then(res => res.json());
 };
 
@@ -33,7 +31,7 @@ const deleteTodo = (id, updater) => {
 };
 
 const resetList = updater => {
-  get('/api/resetList').then(res => updater(res));
+  get('/api/resetList').then(updater);
 };
 
 //TodoItemAPI

@@ -13,10 +13,12 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/todoList', (req, res) => res.json(todo.getTodosList()));
+
 app.get('/api/todo/:id', (req, res) => {
   const id = Number(req.params.id);
   return res.json(todo.getTodo(id));
 });
+
 app.get('/api/resetList', (req, res) => res.json(todo.resetList()));
 
 app.post('/api/addTodo', (req, res) => {
