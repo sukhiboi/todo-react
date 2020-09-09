@@ -13,23 +13,23 @@ const getTodoList = updater => {
 };
 
 const addTodo = (content, updater) => {
-  post('/api/addTodo', { content }).then(() => getTodoList(updater));
+  post('/api/addTodo', { content }).then(updater);
 };
 
 const updateHeading = (heading, updater) => {
-  post('/api/updateHeading', { heading }).then(() => getTodoList(updater));
+  post('/api/updateHeading', { heading }).then(updater);
 };
 
 const deleteTodo = (id, updater) => {
-  post(`/api/deleteTodo/${id}`).then(() => getTodoList(updater));
+  post(`/api/deleteTodo/${id}`).then(updater);
 };
 
 const resetList = updater => {
-  get('/api/resetList').then(() => getTodoList(updater));
+  get('/api/resetList').then(updater);
 };
 
 const toggleTodoStatus = (id, updater) => {
-  post(`/api/toggleTodo/${id}`).then(() => getTodoList(updater));
+  post(`/api/toggleTodo/${id}`).then(updater);
 };
 
 export default {
