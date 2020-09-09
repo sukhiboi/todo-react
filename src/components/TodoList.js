@@ -10,8 +10,8 @@ const TodoItemWithDelete = WithDelete(TodoItem);
 const HeaderWithDelete = WithDelete(Header);
 
 const TodoList = props => {
-  const [{ todoIds, heading }, setTodoList] = useState({
-    todoIds: [],
+  const [{ todos, heading }, setTodoList] = useState({
+    todos: [],
     heading: '',
   });
 
@@ -19,11 +19,12 @@ const TodoList = props => {
     api.getTodoList(setTodoList);
   }, []);
 
-  const todoItems = todoIds.map(id => (
+  const todoItems = todos.map(todo => (
     <TodoItemWithDelete
-      deleteAction={() => api.deleteTodo(id, setTodoList)}
-      id={id}
-      key={id}
+      deleteAction={() => api.deleteTodo(todo.id, setTodoList)}
+      toggleAction={() => api.toggleTodoStatus(todo.id, setTodoList)}
+      {...todo}
+      key={todo.id}
     />
   ));
 

@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import api from '../todoApi';
+import React from 'react';
 
 const TodoItem = function (props) {
-  const [todo, setTodo] = useState(null);
-
-  useEffect(() => {
-    api.getTodo(props.id, setTodo);
-  }, [props.id]);
-
-  if (todo === null) return <p>Loading...</p>;
   return (
-    <div
-      className={`${todo.status} todo-item`}
-      onClick={() => api.toggleTodoStatus(props.id, setTodo)}
-    >
-      <span>{todo.content}</span>
+    <div className={`${props.status} todo-item`} onClick={props.toggleAction}>
+      <span>{props.content}</span>
     </div>
   );
 };
