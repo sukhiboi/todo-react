@@ -4,6 +4,7 @@ const app = express();
 const { getDefaultStatus, getNextStatus } = require('./todoItemStates');
 const todoList = { heading: 'Todo', todos: [], lastId: 0 };
 
+app.use(express.static('./react-build'));
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -42,4 +43,6 @@ app.post('/api/toggleTodo/:id', (req, res) => {
   res.json(todoList);
 });
 
-app.listen(3001, () => console.log('listening on 3001'));
+const PORT = process.argv[2] || 3001;
+
+app.listen(PORT, () => console.log(`app running on ${PORT}`));
