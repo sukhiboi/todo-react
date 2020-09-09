@@ -32,6 +32,7 @@ app.get('/api/resetList', (req, res) => {
   const { todoList } = req.app.locals;
   todoList.todos = [];
   todoList.lastId = 0;
+  saveTodoList(req);
   res.json(todoList);
 });
 
