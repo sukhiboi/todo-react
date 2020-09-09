@@ -43,6 +43,6 @@ app.post('/api/toggleTodo/:id', (req, res) => {
   res.json(todoList);
 });
 
-const PORT = process.argv[2] || 3001;
+const PORT = process.env.PORT || process.argv[2] || 3001;
 
 app.listen(PORT, () => console.log(`app running on ${PORT}`));
