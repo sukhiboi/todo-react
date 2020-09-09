@@ -1,9 +1,7 @@
-rm -rf build
-
 npm run build
 mv build react-build
 
-mkdir build
+mkdir $1
 
-mv ./react-build ./build/react-build
-cp -v *.* ./build
+mv ./react-build $1/react-build
+cp -v backend/*.* $1
