@@ -15,7 +15,7 @@ client.get('todoList', (err, data) => {
 
 const saveTodoList = function (req) {
   const data = JSON.stringify(req.app.locals.todoList);
-  client.set('todoList', data, console.error);
+  client.set('todoList', data, err => err && console.error(err));
 };
 
 app.use(express.static('./react-build'));
