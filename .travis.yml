@@ -1,0 +1,14 @@
+language: node_js
+node_js: lts/*
+install: rm -rf package.json package-lock.json src/ lib/ ./*.js test/ public/
+jobs:
+  include:
+    - stage: DEPLOY
+      script: './scripts/build.sh'
+      deploy:
+        app: todo-react-sukhiboi
+        api_key:
+          secure: Ko5ZEsKyxEFcmuZ6L7vHzqRmKx2xbsAJxD2PGSGE0NxO7r7xbvx53KDBD6W40yMBRa4ombjBEnzSGzMEhegbZqxfmqXzMgtGhrRg9ZKC6lux34D/ykpLtk/D/pfjTMElMP8dItX6ZnFGjF3K27fTcNSTZpj39b3OL8BN4T3utk7xSkgQaH3IjhlSEvU/h9fN9McxPSYSBBbkUp7lzDv1CtMzcJtU/yKSVIygnbEG1D9kIuZ+s2hcAOHpAVO2s/kufIxwXCADKlSDqHrFYz64BkgW3Bq7A+BruxrmfJC/UMR1Wq/vqNtDRF9UJHVRAbhcxeZ47GCOkoplFC6c5hRpL9Fg3VEjutTijvJsbE7Naj0wpIEz/J+HjaFmDlYiVI4GhwAPB/ip79NK0/GT57QcCj98DkPqhopZ3b46vMHkHn8DOj5qu1Dhdjh1JGYFQ94BLjxmRshzx0jt0ZorgJicRgzwqN9SXXZ+PD6DGJiJxLvxdC9HhSJVZN2kXUmLXsAEwyuKNTdiZnj9uKSF6Ptnwoah8JvWXvZyOWnKoveBPNrgf24oM/NUA5aU0+IzLpm1AuE4eDKJWDfQB13dCTDzT9VHKCZNNyiSM4BlPWcN43P39zCoOJUbQNUWvviaJ/rHNDUFYbCt4P8MTYYpSLxfgRNHdqq0oGjekA7pAFTWoyw=
+        provider: heroku
+        run: restart
+        skip_cleanup: true
